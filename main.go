@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"./packages/handler"
+	"github.com/Phyraytor/golang-todo/packages/handler"
 	"log"
 )
 

@@ -8,7 +8,7 @@ import (
 )
 
 func (h *Handler) getAllFoodstuff(c *gin.Context) {
-	items, err := h.services.Foodstuff.GetAllFoodstuff()
+	items, err := h.services.PostgresFoodstuff.GetAll()
 	if err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
@@ -30,7 +30,7 @@ func (h *Handler) getFoodstuffById(c *gin.Context) {
 		return
 	}
 
-	item, err := h.services.Foodstuff.GetFoodstuffById(id)
+	item, err := h.services.PostgresFoodstuff.GetById(id)
 	if err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
@@ -46,7 +46,7 @@ func (h *Handler) createFoodstuff(c *gin.Context) {
 		return
 	}
 
-	id, err := h.services.Foodstuff.CreateFoodstuff(input)
+	id, err := h.services.PostgresFoodstuff.Create(input)
 	if err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
@@ -70,7 +70,7 @@ func (h *Handler) updateFoodstuff(c *gin.Context) {
 		return
 	}
 
-	if err := h.services.Foodstuff.UpdateFoodstuff(id, input); err != nil {
+	if err := h.services.PostgresFoodstuff.Update(id, input); err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
@@ -93,7 +93,7 @@ func (h *Handler) deleteFoodstuff(c *gin.Context) {
 		return
 	}
 
-	err = h.services.Foodstuff.DeleteFoodstuff(id)
+	err = h.services.PostgresFoodstuff.Delete(id)
 	if err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return

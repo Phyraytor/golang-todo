@@ -39,7 +39,6 @@ func (r *TFoodstuff) GetAllFoodstuff() ([]models.Foodstuff, error) {
 		p := models.Foodstuff{}
 		err := rows.Scan(&p.Id, &p.Protein, &p.Fat, &p.Carb, &p.Price)
 		if err != nil {
-			fmt.Println(err)
 			continue
 		}
 		foodstuffs = append(foodstuffs, p)

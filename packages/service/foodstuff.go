@@ -6,29 +6,29 @@ import (
 )
 
 type FoodstuffService struct {
-	repo repository.Foodstuff
+	repo repository.PostgresFoodstuff
 }
 
-func NewFoodstuffService(repo repository.Foodstuff) *FoodstuffService {
+func NewFoodstuffService(repo repository.PostgresFoodstuff) *FoodstuffService {
 	return &FoodstuffService{repo: repo}
 }
 
-func (s *FoodstuffService) CreateFoodstuff(foodstuff models.Foodstuff) (int, error) {
-	return s.repo.CreateFoodstuff(foodstuff)
+func (s *FoodstuffService) Create(foodstuff models.Foodstuff) (int, error) {
+	return s.repo.Create(foodstuff)
 }
 
-func (s *FoodstuffService) GetAllFoodstuff() ([]models.Foodstuff, error) {
-	return s.repo.GetAllFoodstuff()
+func (s *FoodstuffService) GetAll() ([]models.Foodstuff, error) {
+	return s.repo.GetAll()
 }
 
-func (s *FoodstuffService) GetFoodstuffById(id int) (models.Foodstuff, error) {
-	return s.repo.GetFoodstuffById(id)
+func (s *FoodstuffService) GetById(id int) (models.Foodstuff, error) {
+	return s.repo.GetById(id)
 }
 
-func (s *FoodstuffService) UpdateFoodstuff(id int, input models.UpdateFoodstuffInput) error {
-	return s.repo.UpdateFoodstuff(id, input)
+func (s *FoodstuffService) Update(id int, input models.UpdateFoodstuffInput) error {
+	return s.repo.Update(id, input)
 }
 
-func (s *FoodstuffService) DeleteFoodstuff(id int) error {
-	return s.repo.DeleteFoodstuff(id)
+func (s *FoodstuffService) Delete(id int) error {
+	return s.repo.Delete(id)
 }

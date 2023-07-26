@@ -17,6 +17,14 @@ type Foodstuff interface {
 	DeleteFoodstuff(id int) error
 }
 
+type PostgresFoodstuff interface {
+	Create(foodstuff models.Foodstuff) (int, error)
+	GetAll() ([]models.Foodstuff, error)
+	GetById(id int) (models.Foodstuff, error)
+	Update(id int, input models.UpdateFoodstuffInput) error
+	Delete(id int) error
+}
+
 type TodoList interface {
 }
 
@@ -26,13 +34,14 @@ type TodoItem interface {
 type Service struct {
 	Authorization
 	Foodstuff
+	PostgresFoodstuff
 	TodoList
 	TodoItem
 }
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
-		Authorization: NewAuthService(repos.Authorization),
-		Foodstuff:     NewFoodstuffService(repos.Foodstuff),
+		Authorization:     NewAuthService(repos.Authorization),
+		PostgresFoodstuff: NewFoodstuffService(repos.PostgresFoodstuff),
 	}
 }
